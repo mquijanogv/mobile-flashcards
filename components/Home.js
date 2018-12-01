@@ -5,7 +5,6 @@ import * as APIclient from '../utils/api'
 import { handleInitialData } from '../actions/'
 import Deck from './Deck'
 
-
 class Home extends React.Component {
 
   componentDidMount() {
@@ -15,15 +14,14 @@ class Home extends React.Component {
   render() {
     const { questionIds, questions} = this.props
     return (
-        <View style={styles.layout}>
-          <Text style={styles.deck}>Decks</Text>
-          {questionIds.map((id) => (
-            <Deck
-              questionId={id}
-              key={id}
-              />
-          ))}
-        </View>
+      <View style={styles.layout}>
+        {questionIds.map((id) => (
+          <Deck
+            questionId={id}
+            key={id}
+            />
+        ))}
+      </View>
     );
   }
 }
