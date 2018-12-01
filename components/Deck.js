@@ -1,15 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 class Deck extends React.Component {
+  onPressButton = (questionId) => {
+   console.log(`Question ${questionId} was pressed`)
+ }
   render() {
     const { questionId, questions} = this.props
     return (
+      <TouchableOpacity onPress={() => this.onPressButton(questionId)}>
         <View style={styles.deck}>
-          <Text style={styles.Header}> { questions[questionId].title }</Text>
+          <MaterialCommunityIcons style={styles.icon} name="cards" />
+          <Text style={styles.Header}>
+          { questions[questionId].title }
+          </Text>
           <Text style={styles.subHeader}>{ questions[questionId].questions.length } Cards</Text>
         </View>
+      </TouchableOpacity>
     );
   }
 }
@@ -17,13 +26,18 @@ class Deck extends React.Component {
 const styles = StyleSheet.create({
   deck: {
     borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderWidth: 2,
+    borderColor: 'black',
     alignItems: 'center',
+    borderTopWidth: 1
+  },
+  icon: {
+    fontSize: 55,
+    marginTop: 25,
+    color:'black'
   },
   Header: {
     fontSize:30,
-    marginTop: 25,
   },
   subHeader: {
     fontSize: 15,
