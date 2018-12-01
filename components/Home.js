@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar} from 'react-native';
 import { connect } from 'react-redux'
 import * as APIclient from '../utils/api'
 import { handleInitialData } from '../actions/'
+import Deck from './Deck'
 
 
 class Home extends React.Component {
@@ -14,16 +15,31 @@ class Home extends React.Component {
   render() {
     const { questionIds, questions} = this.props
     return (
-        <View>
+        <View style={styles.layout}>
+          <Text style={styles.deck}>Decks</Text>
           {questionIds.map((id) => (
-            <Text key={id}>
-            {id} fhasdfkjlhasfasdfkasjdflk
-            </Text>
+            <Deck
+              questionId={id}
+              key={id}
+              />
           ))}
         </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  layout: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'stretch',
+  },
+  deck: {
+    marginTop: 20,
+    marginBottom: 20,
+    color:'black',
+  }
+});
 
 function mapStateToProps (questions) {
   const questionIds = Object.keys(questions)

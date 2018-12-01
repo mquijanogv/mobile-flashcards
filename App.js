@@ -22,7 +22,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
+    marginTop: 24,
     flex: 1,
     backgroundColor: 'white',
   },
