@@ -1,6 +1,7 @@
 import * as API from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
+export const ADD_NEW_DECK = 'ADD_NEW_DECK'
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -11,6 +12,8 @@ export function handleInitialData () {
       })
   }
 }
+
+
 
 function receiveQuestions (questions) {
   return {

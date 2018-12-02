@@ -6,9 +6,10 @@ import { Provider, connect } from 'react-redux'
 import middleware from './middleware'
 import reducer from './reducers'
 import Home from './components/Home'
+import AddDeck from './components/AddDeck'
 import store from './factory'
 import { createBottomTabNavigator } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 
 const Tabs = createBottomTabNavigator({
   Home: {
@@ -17,9 +18,16 @@ const Tabs = createBottomTabNavigator({
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color='black' />
     },
-
   },
-});
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck',
+      tabBarIcon: ({ tintColor }) => <AntDesign name='pluscircle' size={30} color='black' />
+    },
+  },
+ },
+);
 
 export default class App extends React.Component {
   render() {

@@ -34,6 +34,8 @@ export async function __setInitialDataInStorage () {
   return new Promise((res, rej) => {
     setTimeout( async () => {
       try {
+        // Uncomment this line to erase all data in AsyncStorage
+        //AsyncStorage.clear()
         const dataIsInitialized = await AsyncStorage.getItem(DATA_INITIALIZED);
         if (dataIsInitialized) {
           const appData = await AsyncStorage.getItem(APP_DATA)
@@ -41,7 +43,7 @@ export async function __setInitialDataInStorage () {
         } else {
           await AsyncStorage.setItem(DATA_INITIALIZED, "true");
           AsyncStorage.setItem('APP_DATA', JSON.stringify(mobileDecks),  async() => {
-            const data = await AsyncStorage.getItem(MOBILE_CARDS_DATA)
+            const data = await AsyncStorage.getItem(APP_DATA)
             res(data)
           });
         }
@@ -52,14 +54,37 @@ export async function __setInitialDataInStorage () {
   })
 }
 
-// function getemptyDeck (deckName) {
-//   return {
-//     deckName: {
-//       title: deckName,
-//       questions: []
-//     }
-//   }
-// }
+export async function __addNewDeck (deck) {
+  return new Promise((res, rej) => {
+    setTimeout(async () => {
+      try {
+        const appData = await AsyncStorage.getItem(APP_DATA)
+        parsedData = JSON.parse(appData)
+        const newData = {
+          ...parsedData,
+          [deck]:{
+            ['questions']: [],
+            ['title']: deck
+          }
+        }
+
+        await AsyncStorage.setItem('APP_DATA', JSON.stringify(newData));
+          const data = await AsyncStorage.getItem(APP_DATA)
+          res(JSON.parse(data))
+      } catch (err) {
+        rej(err)
+      }
+    },1000)
+  })
+}
+
+function getEmptyDeck (deckName) {
+  return {
+      title: deckName,
+      questions: []
+    }
+}
+
 //
 // export function getDecks () {
 //   return new Promise((res, rej) => {

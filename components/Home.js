@@ -1,11 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View, StatusBar} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, StatusBar, FlatList, ScrollView} from 'react-native';
 import { connect } from 'react-redux'
 import * as APIclient from '../utils/api'
-import { handleInitialData } from '../actions/'
+import { handleInitialData } from '../actions/InitialData'
 import Deck from './Deck'
 
-class Home extends React.Component {
+class Home extends Component {
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -14,14 +14,14 @@ class Home extends React.Component {
   render() {
     const { questionIds, questions} = this.props
     return (
-      <View style={styles.layout}>
+      <ScrollView>
         {questionIds.map((id) => (
           <Deck
             questionId={id}
             key={id}
             />
         ))}
-      </View>
+      </ScrollView>
     );
   }
 }
