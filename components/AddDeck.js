@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { addNewDeck } from '../actions/deck'
+import { withNavigation } from 'react-navigation';
 
 class AddDeck extends Component {
+  static navigationOptions = {
+    title: 'Add New Deck',
+    headerStyle: {
+      backgroundColor: 'white',
+      height:40,
+    },
+    headerTintColor: 'black',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
+
   state = {
     text:''
   }
@@ -75,4 +88,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(AddDeck)
+export default withNavigation(connect()(AddDeck));

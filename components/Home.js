@@ -6,6 +6,19 @@ import { handleInitialData } from '../actions/InitialData'
 import Deck from './Deck'
 
 class Home extends Component {
+  static navigationOptions = {
+    title: 'Mobile Flash Cards App',
+    headerStyle: {
+      // backgroundColor: '#f4511e',
+      backgroundColor: 'white',
+      height:40,
+    },
+    headerTintColor: 'black',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      alignSelf:'center'
+    },
+  };
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())

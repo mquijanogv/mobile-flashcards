@@ -2,9 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { withNavigation } from 'react-navigation';
 
 class Deck extends React.Component {
   onPressButton = (questionId) => {
+    this.props.navigation.navigate('DeckDetail', {
+             questionId
+           });
    console.log(`Question ${questionId} was pressed`)
  }
   render() {
@@ -29,7 +33,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     alignItems: 'center',
-    borderTopWidth: 1
+    borderTopWidth: 0
   },
   icon: {
     fontSize: 55,
@@ -52,4 +56,4 @@ function mapStateToProps (questions) {
   }
 }
 
-export default connect(mapStateToProps)(Deck)
+export default withNavigation(connect(mapStateToProps)(Deck));
