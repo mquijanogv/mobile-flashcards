@@ -17,28 +17,41 @@ class DeckDetail extends React.Component {
     },
   };
 
-  handlePress = () => {
-    console.log("Button was pressed")
+  handlePress = (button, questionId) => {
+    switch(button) {
+      case 'Add Card':
+        this.props.navigation.navigate('AddCard', { questionId });
+        break
+      case 'Start Quiz':
+        this.props.navigation.navigate('Quiz', { questionId });
+        break
+      case 'Delete Deck':
+        console.log("Delete Deck")
+        break
+      default:
+        return
+    }
   }
+
   render() {
-    const itemId = this.props.navigation.getParam('questionId', 'NO-ID');
+    const questionId = this.props.navigation.getParam('questionId', 'NO-ID');
     const { questions } = this.props
 
     return (
       <View>
-        <Text style={styles.question}>{itemId}</Text>
-        <Text style={styles.cards}>{ questions[itemId].questions.length } Cards </Text>
-        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress()}>
+        <Text style={styles.question}>{questionId}</Text>
+        <Text style={styles.cards}>{ questions[questionId].questions.length } Cards </Text>
+        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress('Add Card', questionId)}>
           <Text style={styles.btnText}>
             Add Card
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress()}>
+        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress('Start Quiz', questionId)}>
           <Text style={styles.btnText}>
             Start Quiz
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress()}>
+        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress('Delete Deck', questionId)}>
           <Text style={styles.btnText}>
             Delete Deck
           </Text>

@@ -78,49 +78,31 @@ export async function __addNewDeck (deck) {
   })
 }
 
+export async function __addNewCard (deckId, question) {
+  return new Promise((res, rej) => {
+    setTimeout(async () => {
+      try {
+        const appData = await AsyncStorage.getItem(APP_DATA)
+        parsedData = JSON.parse(appData)
+        const newData = {
+          ...parsedData,
+          [deckId]:{
+            ...parsedData[deckId],
+            ['questions']: parsedData[deckId].questions.concat(question)
+          }
+        }
+        await AsyncStorage.setItem('APP_DATA', JSON.stringify(newData));
+        res(question)
+      } catch (err) {
+        rej(err)
+      }
+    },1000)
+  })
+}
+
 function getEmptyDeck (deckName) {
   return {
       title: deckName,
       questions: []
     }
 }
-
-//
-// export function getDecks () {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res(mobileDecks)
-//     }, 1000)
-//   })
-// }
-//
-// export function getDeck (id) {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res(mobileDeck[id])
-//     }, 1000)
-//   })
-// }
-//
-// export function saveDeckTitle (id) {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       mobileDecks = {
-//         ...mobileDecks,
-//         id: {
-//           title: id,
-//           questions:[]
-//         }
-//       }
-//       res()
-//     }, 1000)
-//   })
-// }
-//
-// export function addCardToDeck (id) {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res(mobileDeck[id])
-//     }, 1000)
-//   })
-// }
