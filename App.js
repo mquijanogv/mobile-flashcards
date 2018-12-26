@@ -10,6 +10,7 @@ import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
 import Quiz from './components/Quiz'
 import AddCard from './components/AddCard'
+import QuizResults from './components/QuizResults'
 import store from './factory'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Ionicons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
@@ -18,9 +19,9 @@ const HomeStack = createStackNavigator({
   Home: { screen: Home },
   DeckDetail: { screen: DeckDetail },
   AddDeck: { screen: AddDeck },
-  Settings: { screen: AddDeck },
-  Quiz: { screen: Quiz},
-  AddCard: { screen: AddCard},
+  Quiz: { screen: Quiz },
+  AddCard: { screen: AddCard },
+  QuizResults: { screen: QuizResults }
 
 });
 
@@ -37,13 +38,6 @@ const Tabs = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => <AntDesign name='pluscircle' size={30} color='black' />
-    },
-  },
-  Settings: {
-    screen: AddDeck,
-    navigationOptions: {
-      tabBarLabel: 'Settings',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='md-settings' size={30} color='black' />
     },
   },
  }
