@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { withNavigation } from 'react-navigation';
+import { deleteDeck } from '../actions/deck'
 
 class DeckDetail extends React.Component {
   static navigationOptions = {
@@ -26,7 +27,8 @@ class DeckDetail extends React.Component {
         this.props.navigation.navigate('Quiz', { questionId });
         break
       case 'Delete Deck':
-        console.log("Delete Deck")
+        this.props.dispatch(deleteDeck(questionId))
+          this.props.navigation.navigate('Home');
         break
       default:
         return
@@ -36,7 +38,6 @@ class DeckDetail extends React.Component {
   render() {
     const questionId = this.props.navigation.getParam('questionId', 'NO-ID');
     const { questions } = this.props
-
     return (
       <View>
         <Text style={styles.question}>{questionId}</Text>
@@ -46,11 +47,13 @@ class DeckDetail extends React.Component {
             Add Card
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => this.handlePress('Start Quiz', questionId)}>
-          <Text style={styles.btnText}>
-            Start Quiz
-          </Text>
-        </TouchableOpacity>
+        { questions[questionId].questions.length > 0 && (
+          <TouchableOpacity style={styles.btn} onPress={() => this.handlePress('Start Quiz', questionId)}>
+            <Text style={styles.btnText}>
+              Start Quiz
+            </Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity style={styles.btn} onPress={() => this.handlePress('Delete Deck', questionId)}>
           <Text style={styles.btnText}>
             Delete Deck

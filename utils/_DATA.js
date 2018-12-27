@@ -96,7 +96,29 @@ export async function __addNewCard (deckId, question) {
       } catch (err) {
         rej(err)
       }
-    },1000)
+    }, 1000)
+  })
+}
+
+export async function __deleteDeck (deck) {
+  return new Promise((res, rej) => {
+    const deckToBeRemoved = deck
+    setTimeout(async () => {
+      try {
+        const appData = await AsyncStorage.getItem(APP_DATA)
+        const parsedData = JSON.parse(appData)
+        const newData = Object.keys(parsedData).reduce((object, key) => {
+          if (key !== deckToBeRemoved) {
+            object[key] = parsedData[key]
+          }
+          return object
+        }, {})
+        await AsyncStorage.setItem('APP_DATA', JSON.stringify(newData));
+        res(newData);
+      } catch(err) {
+        rej(err)
+      }
+    }, 1000)
   })
 }
 

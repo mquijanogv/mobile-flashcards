@@ -1,5 +1,5 @@
 import  { RECEIVE_QUESTIONS } from '../actions/InitialData'
-import  { ADD_NEW_DECK } from '../actions/deck'
+import  { ADD_NEW_DECK, DELETE_DECK } from '../actions/deck'
 import { ADD_NEW_CARD } from '../actions/Card'
 
 function questions (state = {}, action) {
@@ -19,6 +19,8 @@ function questions (state = {}, action) {
           ['questions']: state[action.deckId].questions.concat(action.question)
         }
       }
+    case DELETE_DECK:
+      return action.newData
     default:
       return state
   }

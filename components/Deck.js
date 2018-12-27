@@ -9,7 +9,6 @@ class Deck extends React.Component {
     this.props.navigation.navigate('DeckDetail', {
              questionId
            });
-   console.log(`Question ${questionId} was pressed`)
  }
   render() {
     const { questionId, questions} = this.props
