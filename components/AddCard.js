@@ -33,6 +33,7 @@ class AddCard extends React.Component {
   handlePress = (questionId) => {
     const question = this.createQuestionObject(this.state.question, this.state.answer)
     this.props.dispatch(addNewCard(questionId, question))
+    this.props.navigation.navigate('DeckDetail', { questionId });
   }
 
   render() {

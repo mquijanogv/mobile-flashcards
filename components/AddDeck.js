@@ -23,6 +23,7 @@ class AddDeck extends Component {
 
   handlePress = () => {
     this.props.dispatch(addNewDeck(this.state.text))
+    this.props.navigation.navigate('Home')
   }
 
   render() {
