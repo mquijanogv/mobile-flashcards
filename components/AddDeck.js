@@ -51,9 +51,8 @@ class AddDeck extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 24,
-    flex: 1,
-    backgroundColor: 'white',
+    marginTop: 25,
+    flex: 1
   },
   question: {
     textAlign:"center",
