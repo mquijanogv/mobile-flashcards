@@ -14,6 +14,7 @@ import QuizResults from './components/QuizResults'
 import store from './factory'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Ionicons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import { setLocalNotification } from './utils/helpers'
 
 const HomeStack = createStackNavigator({
   Home: { screen: Home },
@@ -44,6 +45,10 @@ const Tabs = createBottomTabNavigator({
 );
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+  
   render() {
     return (
       <Provider store={store}>
