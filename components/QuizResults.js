@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { withNavigation } from 'react-navigation';
+import { setLocalNotification } from '../utils/helpers'
 
 class QuizResults extends React.Component {
   static navigationOptions = {
@@ -15,6 +16,10 @@ class QuizResults extends React.Component {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
+  }
+
+  componentDidMount() {
+    setLocalNotification()
   }
 
   getPercentage = (correctAnswers, total) => {
