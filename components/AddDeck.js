@@ -22,8 +22,11 @@ class AddDeck extends Component {
   }
 
   handlePress = () => {
+    const questionId = this.state.text
     this.props.dispatch(addNewDeck(this.state.text))
-    this.props.navigation.navigate('Home')
+     .then(() => {
+       this.props.navigation.navigate('DeckDetail', { questionId });
+     })
   }
 
   render() {
