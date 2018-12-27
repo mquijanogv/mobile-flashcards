@@ -1,7 +1,7 @@
 # Mobile Flash Cards
 A simple app created with React Native to help people study.
 
-# Mobile Flash Cards
+## Requirements
 You need to install `expo` on you machine in order to run this app.
 `npm install -g expo-cli`
 or
